@@ -1,42 +1,53 @@
 import React from 'react';
+import './App.css';
 
+// dummy component - it is also a functional component
 const Header = () => {
   return (
-    <header>
-      <h1>Header</h1>
+    <header className="words-app">
+      <h1>counter App React Land</h1>
     </header>
-  );
-};
-
-class Footer extends React.Component {
-  render() {
-    return <footer>&copy; 2018 Code Fellows</footer>;
-  }
+  )
 }
-
+// also a dummy component and functional component
+const Footer = () => {
+  return (
+    <footer>my cool footer</footer>
+  )
+}
 class Main extends React.Component {
   constructor(props) {
     super(props);
+    // initial state
     this.state = {
-      number: 0,
-    };
+      counter: 0
+    }
   }
 
-  handleButtonClick = e => {
+  handleClickIncrement = e => {
     e.preventDefault();
-    this.setState({ number: Math.floor(Math.random() * 20 + 1) });
-  };
+    let counter = this.state.counter + 1;
+    this.setState({ counter });
+
+  }
+
+  handleClickDecrement = e => {
+    e.preventDefault();
+    let counter = this.state.counter - 1;
+    this.setState({ counter });
+
+  }
 
   render() {
     return (
-      <div>
-        <h4>The number is: {this.state.number}</h4>
-        <button onClick={this.handleButtonClick}>Click Me</button>
-      </div>
-    );
+      <section>
+        <h3>{this.state.counter}</h3>
+        <button onClick={this.handleClickIncrement}>click for Increment</button>
+        <button onClick={this.handleClickDecrement}>click for Decrement</button>
+       </section>
+    )
   }
 }
-
 class App extends React.Component {
   render() {
     return (
@@ -45,8 +56,7 @@ class App extends React.Component {
         <Main />
         <Footer />
       </React.Fragment>
-    );
+    )
   }
 }
-
 export default App;
